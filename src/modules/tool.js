@@ -14,7 +14,7 @@ export function linkCss(cssName) {
 
 
 // 抓取氣象局API 資料
-export async function fetchWeatherData(dataid, locationName=null) {
+async function fetchWeatherData(dataid, locationName=null) {
     let fetchUrl = `${url}${dataid}?Authorization=${apikey}&format=JSON`;
     if(locationName) {
         fetchUrl += `&locationName=${locationName}`;
