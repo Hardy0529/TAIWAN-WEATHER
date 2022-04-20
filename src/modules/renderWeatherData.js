@@ -4,15 +4,29 @@ import { getWeatherSVG } from "./weather-svg.js"
 let hoursWeatherData = null;
 let weekWeatherData = null;
 
+const unitWeatherOfPage = 3;
+let weatherNum = 0;
+// 設定監聽條件
+const observerCallback = ([entry]) => {
+    if (entry && entry.isIntersecting) {
+        render36HoursWeather();
+        weatherNum++;
+    }
+};
+
 const weatherContainer = document.querySelector(".weather__render");
-async function init() {
-    hoursWeatherData = await get36HoursWeatherData();
-    weekWeatherData = await getWeekWeatherData();
-    render36HoursWeather();
-}
+const weatherObserver = document.querySelector(".weather__render-observer");
+// 建立一個 intersection observer
+const observer = new IntersectionObserver(observerCallback);
 
 function render36HoursWeather() {
-    for(let i = 0, weatherData=null; i < hoursWeatherData.length, weatherData=hoursWeatherData[i]; i++) {
+    const startIndex = unitWeatherOfPage * weatherNum;
+    const maxLength = Math.min(hoursWeatherData.length, unitWeatherOfPage * (weatherNum + 1));
+    if(startIndex > maxLength) {
+        observer.unobserve(weatherObserver);
+    }
+    for(let i = startIndex; i < maxLength; i++) {
+        const weatherData=hoursWeatherData[i]
         const label = document.createElement("label");
         label.classList.add("weather__itme");
         const input = document.createElement("input");
@@ -109,4 +123,13 @@ function renderWeekWeather(locationName, container) {
     }
 }
 
-init();
+window.addEventListener("DOMContentLoaded", () => {
+    init();
+});
+
+async function init() {
+    hoursWeatherData = await get36HoursWeatherData();
+    weekWeatherData = await getWeekWeatherData();
+    // 資料載入，開始監測
+    observer.observe(weatherObserver);
+}
