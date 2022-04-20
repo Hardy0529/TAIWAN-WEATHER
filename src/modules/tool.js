@@ -43,6 +43,7 @@ const weekWeatherConfig = {
     WD: false,                 // 風向
     Td: false                  // 平均露點溫度
 }
+const unitOfWeekData = 7;
 export async function getWeekWeatherData(locationName=null) {
     const weatherData = await fetchWeatherData("F-D0047-091", locationName);
     return classifyWeekWeatherData(weatherData);
@@ -84,6 +85,8 @@ function classifyWeekWeatherData(weatherData) {
                     }
                     weekInfo.push(timeItem.elementValue[0].value.trim());
                     compareDate = startTime;
+                    // 超過設定筆數，不再抓取
+                    if(weekInfo.length >= unitOfWeekData) { break; }
                 }
             }
             solvedData[`${weatherElementItem.elementName}`] = weekInfo;
@@ -111,6 +114,7 @@ export async function get36HoursWeatherData(locationName=null) {
     const weatherData = await fetchWeatherData("F-C0032-001", locationName);
     return classify36HoursWeatherData(weatherData);
 }
+const unitOf36HoursData = 3;
 function classify36HoursWeatherData(weatherData) {
     const returnData = [];
 
@@ -143,6 +147,8 @@ function classify36HoursWeatherData(weatherData) {
                     weekSecondInfo.push(timeItem.parameter.parameterValue);
                 }
                 weekInfo.push(timeItem.parameter.parameterName.trim());
+                // 超過設定筆數，不再抓取
+                if(weekInfo.length >= unitOf36HoursData) { break; }
             }
             solvedData[`${weatherElementItem.elementName}`] = weekInfo;
             if(weekSecondInfo.length > 0) {

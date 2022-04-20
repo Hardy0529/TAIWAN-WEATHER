@@ -5,7 +5,7 @@ let hoursWeatherData = null;
 let weekWeatherData = null;
 
 const weatherContainer = document.querySelector(".weather__render");
-export async function init() {
+async function init() {
     hoursWeatherData = await get36HoursWeatherData();
     weekWeatherData = await getWeekWeatherData();
     render36HoursWeather();
