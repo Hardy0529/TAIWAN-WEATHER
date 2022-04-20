@@ -88,7 +88,7 @@ function classifyWeekWeatherData(weatherData) {
 
 // 一般天氣預報-今明 36 小時天氣預報
 // 撈取資料設定
-const thirtySixthHoursWeatherConfig = {
+const thirtySixteenHoursWeatherConfig = {
     Wx: true,    // 天氣現象
     PoP: true,   // 降雨機率
     MinT: true,  // 最低溫度
@@ -114,7 +114,7 @@ function classify36HoursWeatherData(weatherData) {
             const weatherElementItem = weatherElementList[j];
 
             // skip 沒有要抓取的資料
-            if(!thirtySixthHoursWeatherConfig[`${weatherElementItem.elementName}`]) { continue; }
+            if(!thirtySixteenHoursWeatherConfig[`${weatherElementItem.elementName}`]) { continue; }
 
             // 拆分未來一週資訊
             let timeList = weatherElementItem.time;
