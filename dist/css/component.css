@@ -17,7 +17,7 @@
 .wrapper {
   background-color: #c5ebfa;
   overflow: hidden;
-  min-width: 360px;
+  min-width: 375px;
 }
 
 /*-------------------------*/
@@ -139,15 +139,15 @@
 /* jumbotron */
 .jumbotron {
   margin-top: 56px;
-  padding-top: 65px;
-  padding-bottom: 65px;
+  padding-top: 80px;
+  padding-bottom: 55px;
   position: relative;
   overflow: hidden;
 }
-@media (min-width: 576px) {
+@media (min-width: 768px) {
   .jumbotron {
-    padding-top: 85px;
-    padding-bottom: 85px;
+    padding-top: 135px;
+    padding-bottom: 135px;
   }
 }
 
@@ -161,6 +161,13 @@
   margin: 0px;
   text-align: center;
 }
+@media (min-width: 768px) {
+  .jumbotron__heading {
+    font-size: 60px;
+    line-height: 85.8px;
+  }
+}
+
 .jumbotron__heading span {
   display: block;
   transform: skewY(-10.5deg);
@@ -202,6 +209,12 @@
   left: 3%;
   top: 80%;
   transform: rotate(-17.5deg);
+  display: none;
+}
+@media (min-width: 576px) {
+  .jumbotron__cloud01 {
+    display: block;
+  }
 }
 @media (min-width: 768px) {
   .jumbotron__cloud01 {
@@ -221,6 +234,12 @@
   right: 5%;
   top: 25%;
   transform: rotate(10.5deg);
+  display: none;
+}
+@media (min-width: 576px) {
+  .jumbotron__cloud02 {
+    display: block;
+  }
 }
 @media (min-width: 768px) {
   .jumbotron__cloud02 {
@@ -237,9 +256,15 @@
 /* cloud 03 */
 .jumbotron__cloud03 {
   background-color: #86def5;
-  left: 18%;
-  top: 30%;
+  left: 8%;
+  top: 40%;
   transform: rotate(-10.5deg);
+}
+@media (min-width: 768px) {
+  .jumbotron__cloud03 {
+    left: 10%;
+    top: 40%;
+  }
 }
 @media (min-width: 768px) {
   .jumbotron__cloud03 {
@@ -289,19 +314,19 @@
 ---------------------------*/
 /* weather */
 .weather {
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
-@media (min-width: 576px) {
+@media (min-width: 768px) {
   .weather {
-    padding-top: 60px;
+    padding-top: 0px;
     padding-bottom: 60px;
   }
 }
 
 /* form */
 .weather .weather__drop-down-menu {
-  padding: 40px 0px 40px 0px;
+  padding: 30px 0px 40px 0px;
 }
 .weather__UpdateTime {
   letter-spacing: 2px;
@@ -490,6 +515,43 @@
   stroke-width: 30px;
   stroke: rgba(255, 214, 51, 0.5);
   stroke-dasharray: 5px;
+  -webkit-animation: sun 3s infinite linear both;
+  animation: sun 3s infinite linear both;
+  transform: translate(-3%, 0%);
+}
+@-webkit-keyframes sun {
+  0% {
+    transform: translate(-3%, 0%);
+  }
+  25% {
+    transform: translate(5%, 0%);
+  }
+  50% {
+    transform: translate(5%, 3%);
+  }
+  75% {
+    transform: translate(-3%, 3%);
+  }
+  100% {
+    transform: translate(-3%, 0%);
+  }
+}
+@keyframes sun {
+  0% {
+    transform: translate(-3%, -3%);
+  }
+  25% {
+    transform: translate(3%, -3%);
+  }
+  50% {
+    transform: translate(3%, 3%);
+  }
+  75% {
+    transform: translate(-3%, 3%);
+  }
+  100% {
+    transform: translate(-3%, -3%);
+  }
 }
 
 /* rain */
@@ -539,7 +601,7 @@ svg .rain {
 
 /* cloud */
 .weather__dayweather svg .cloud {
-  fill: #ccc;
+  fill: #c8c8c8;
 }
 
 .weather__weekWeather {
@@ -640,7 +702,7 @@ svg .rain {
   stroke-width: 5px;
 }
 .weather__weekWeather-item svg .cloud {
-  fill: #ccc;
+  fill: #c8c8c8;
 }
 
 /*-------------------------*/
