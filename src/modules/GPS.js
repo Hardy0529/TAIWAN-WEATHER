@@ -9,7 +9,7 @@ export function geoFindMe() {
         function success(position) {
             let latitude  = position.coords.latitude;
             let longitude = position.coords.longitude;
-            Url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&language=zh-TW&key=AIzaSyDQO5Pgj0_X8Uk8PMjyeVfp6KIcIO9g39U"
+            let Url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&language=zh-TW&key=AIzaSyDQO5Pgj0_X8Uk8PMjyeVfp6KIcIO9g39U"
             
             fetch(Url)
             .then((response) => {
