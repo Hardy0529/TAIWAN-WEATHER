@@ -2,7 +2,7 @@
  * TAIWAN Weather 台灣各縣市每週天氣預報
  */
 
-/** 
+/**
  * Globel
  * Elements
  * Header
@@ -172,8 +172,8 @@
   display: block;
   transform: skewY(-10.5deg);
   text-shadow: -0.08em 0.08em 0.05em #225b8f;
-  /* 
-  transform: rotate(-10.5deg); 
+  /*
+  transform: rotate(-10.5deg);
   */
 }
 
@@ -310,7 +310,7 @@
 }
 
 /*-------------------------*/
-/* $Weather 
+/* $Weather
 ---------------------------*/
 /* weather */
 .weather {
@@ -325,9 +325,15 @@
 }
 
 /* form */
+<<<<<<< HEAD
 .weather .weather__drop-down-menu {
   padding: 30px 0px 40px 0px;
 }
+=======
+/* .weather .weather__drop-down-menu {
+  padding: 40px 0px 40px 0px;
+} */
+>>>>>>> 332528d1146501ec3a12e6a1e139d4bff203b102
 .weather__UpdateTime {
   letter-spacing: 2px;
   text-align: right;
@@ -338,7 +344,7 @@
   color: #225b8f;
   padding-bottom: 16px;
 }
-.weather form {
+/* .weather form {
   text-align: right;
 }
 .weather form select {
@@ -359,7 +365,7 @@
   height: 40px;
   vertical-align: middle;
   border-radius: 0px 4px 4px 0px;
-}
+} */
 
 /* weather render  */
 .weather__render {
