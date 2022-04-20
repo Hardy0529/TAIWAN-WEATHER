@@ -1,3 +1,4 @@
+export {geoFindMe};
 export const location = data[0].address_components[4].long_name;
 
 function geoFindMe() {
