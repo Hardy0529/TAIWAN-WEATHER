@@ -52,6 +52,7 @@ function classifyWeekWeatherData(weatherData) {
 
     const weatherLocationList = weatherData.records.locations[0].location;
     // 拆分各縣市
+    let timeInfo = [];
     for(let i = 0, dataLen = weatherLocationList.length; i < dataLen; i++) {
         let solvedData = {};
 
@@ -69,17 +70,28 @@ function classifyWeekWeatherData(weatherData) {
             let timeLen = timeList.length;
             let timeItem = null;
             let weekInfo = [];
+            let weekSecondInfo = [];
             let compareDate = null;
             for(let k = 0; k < timeLen, timeItem = timeList[k]; k++) {
                 // 用 startTime 做區分，相同日期不再抓取
                 const startTime = new Date(timeItem.startTime);
                 if(!compareDate || compareDate.getDate() != startTime.getDate()) {
+                    if(i == 0 && j == 0) {
+                        timeInfo.push(timeItem.startTime);
+                    }
+                    if(weatherElementItem.elementName == "Wx") {
+                        weekSecondInfo.push(timeItem.elementValue[1].value.trim());
+                    }
                     weekInfo.push(timeItem.elementValue[0].value.trim());
                     compareDate = startTime;
                 }
             }
             solvedData[`${weatherElementItem.elementName}`] = weekInfo;
+            if(weekSecondInfo.length > 0) {
+                solvedData[`${weatherElementItem.elementName}2`] = weekSecondInfo;
+            }
         }
+        solvedData["time"] = timeInfo;
         solvedData["locationName"] = weatherLocationItem.locationName;
         returnData.push(solvedData);
     }
@@ -104,6 +116,7 @@ function classify36HoursWeatherData(weatherData) {
 
     const weatherLocationList = weatherData.records.location;
     // 拆分各縣市
+    let timeInfo = [];
     for(let i = 0, dataLen = weatherLocationList.length; i < dataLen; i++) {
         let solvedData = {};
 
@@ -120,18 +133,23 @@ function classify36HoursWeatherData(weatherData) {
             let timeList = weatherElementItem.time;
             let timeLen = timeList.length;
             let timeItem=null;
-            let compareDate = null;
             let weekInfo = [];
+            let weekSecondInfo = [];
             for(let k = 0; k < timeLen, timeItem = timeList[k]; k++) {
-                // 用 startTime 做區分，相同日期不再抓取
-                const startTime = new Date(timeItem.startTime);
-                if(!compareDate || compareDate.getDate() != startTime.getDate()) {
-                    weekInfo.push(timeItem.parameter.parameterName.trim());
-                    compareDate = startTime;
+                if(i == 0 && j == 0) {
+                    timeInfo.push(timeItem.startTime);
                 }
+                if(weatherElementItem.elementName == "Wx") {
+                    weekSecondInfo.push(timeItem.parameter.parameterValue);
+                }
+                weekInfo.push(timeItem.parameter.parameterName.trim());
             }
             solvedData[`${weatherElementItem.elementName}`] = weekInfo;
+            if(weekSecondInfo.length > 0) {
+                solvedData[`${weatherElementItem.elementName}2`] = weekSecondInfo;
+            }
         }
+        solvedData["time"] = timeInfo;
         solvedData["locationName"] = weatherLocationItem.locationName;
         returnData.push(solvedData);
     }
