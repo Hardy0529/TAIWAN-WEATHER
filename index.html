@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./dist/css/base.css" />
     <link rel="stylesheet" href="./dist/css/layout.css" />
     <link rel="stylesheet" href="./dist/css/component.css" />
+    <link rel="stylesheet" href="./dist/css/dropDownMenu.css" />
   </head>
   <body>
     <div class="wrapper">
@@ -58,7 +59,11 @@
             <div class="weather__UpdateTime">
               <span> 更新時間：4/21 18:52 </span>
             </div>
-            <form action="">
+            <div class="weather__menu-bar">
+              <p id="close">測試用關閉鍵</p>
+              <button class="weather__menu-bar-btn">-- 選擇縣市名稱 --</button>
+            </div>
+            <!-- <form action="">
               <select name="option">
                 <option value="" disabled="disabled" selected="selected">
                   選擇縣市
@@ -86,7 +91,7 @@
                 <option value="臺中市">臺中市</option>
                 <option value="新竹市">新竹市</option></select
               ><input class="btn" type="button" value="送出" />
-            </form>
+            </form> -->
           </div>
           <div class="weather__render">
             <label class="weather__itme">
