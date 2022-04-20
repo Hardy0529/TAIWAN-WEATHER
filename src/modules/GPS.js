@@ -1,10 +1,10 @@
 geoFindMe();
-export    function geoFindMe() {
+export function geoFindMe() {
         
         if (!navigator.geolocation){
             return;
         }
-        navigator.geolocation.getCurrentPosition(success, error);
+        navigator.geolocation.getCurrentPosition(success);
         
         function success(position) {
             let latitude  = position.coords.latitude;
