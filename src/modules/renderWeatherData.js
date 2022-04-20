@@ -50,7 +50,7 @@ function render36HoursWeather() {
             const weatherChartTime = document.createElement("div");
             weatherChartTime.classList.add("weather__chart-time");
             const time = new Date(weatherData.time[j]);
-            weatherChartTime.textContent = `${time.getUTCHours()} ${ (time.getUTCHours() >= 12) ? "PM" : "AM" }`;
+            weatherChartTime.textContent = `${time.getHours()} ${ (time.getHours() >= 12) ? "PM" : "AM" }`;
             
             const weatherDayWeatherIcon = document.createElement("div");
             weatherDayWeatherIcon.classList.add("weather__dayweather-icon");
