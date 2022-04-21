@@ -41,7 +41,9 @@ function renderWeather() {
         if(!refreshFlag) {
             startIndex = hoursWeatherData.findIndex((element) => element.locationName == locationLockInfo.locationName);
             if(startIndex == -1) {
-                endIndex = startIndex;
+                weatherNum = 0;
+                startIndex = unitWeatherOfPage * weatherNum;
+                endIndex = Math.min(hoursWeatherData.length, startIndex + unitWeatherOfPage);
             } else {
                 endIndex = startIndex + 1;
             }
@@ -178,7 +180,7 @@ async function loadData() {
     weekWeatherData = await getWeatherDataWeek();
     // 更新畫面時間
     const now = new Date();
-    timeRefresh.textContent = `更新時間：${now.getMonth()}/${now.getDate()} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes()}:${now.getSeconds().toString().padStart(2, '0')}`;
+    timeRefresh.textContent = `更新時間：${now.getMonth() + 1}/${now.getDate()} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes()}:${now.getSeconds().toString().padStart(2, '0')}`;
 
     stopDataLoading();
 }
