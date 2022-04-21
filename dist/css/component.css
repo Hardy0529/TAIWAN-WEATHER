@@ -325,15 +325,10 @@
 }
 
 /* form */
-<<<<<<< HEAD
 .weather .weather__drop-down-menu {
-  padding: 30px 0px 40px 0px;
+  padding: 30px 0px 0px 0px;
 }
-=======
-/* .weather .weather__drop-down-menu {
-  padding: 40px 0px 40px 0px;
-} */
->>>>>>> 332528d1146501ec3a12e6a1e139d4bff203b102
+
 .weather__UpdateTime {
   letter-spacing: 2px;
   text-align: right;
@@ -344,28 +339,6 @@
   color: #225b8f;
   padding-bottom: 16px;
 }
-/* .weather form {
-  text-align: right;
-}
-.weather form select {
-  width: 200px;
-  color: #225b8f;
-  height: 40px;
-  padding-left: 20px;
-  padding-right: 20px;
-  font-size: 18px;
-  font-weight: 900;
-  outline: none;
-  background-color: rgba(134, 222, 245, 0.3);
-  border-radius: 4px 0px 0px 4px;
-  vertical-align: middle;
-  border: 1px solid #225b8f;
-}
-.weather form .btn {
-  height: 40px;
-  vertical-align: middle;
-  border-radius: 0px 4px 4px 0px;
-} */
 
 /* weather render  */
 .weather__render {
