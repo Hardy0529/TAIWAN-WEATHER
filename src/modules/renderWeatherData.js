@@ -41,7 +41,9 @@ function renderWeather() {
         if(!refreshFlag) {
             startIndex = hoursWeatherData.findIndex((element) => element.locationName == locationLockInfo.locationName);
             if(startIndex == -1) {
-                endIndex = startIndex;
+                weatherNum = 0;
+                startIndex = unitWeatherOfPage * weatherNum;
+                endIndex = Math.min(hoursWeatherData.length, startIndex + unitWeatherOfPage);
             } else {
                 endIndex = startIndex + 1;
             }
