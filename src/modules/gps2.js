@@ -1,3 +1,5 @@
+import { renderWeatherLocationLock } from "./renderWeatherData";
+
 function init() {
   //取得 經緯度
   if (navigator.geolocation) {
@@ -11,7 +13,7 @@ function init() {
     let my_lat = position.coords.latitude;
     let my_lon = position.coords.longitude;
     let min_result = 9999;
-    let result_name = "台北";
+    let locationName = "台北";
 
     fetch(
       "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-091?Authorization=CWB-EF46CCF9-7FB5-4120-AA40-CFDDA8BC249C"
@@ -33,10 +35,12 @@ function init() {
 
           if (min_result > result) {
             min_result = result;
-            result_name = element["locationName"];
+            locationName = element["locationName"];
           }
         });
-        console.log(result_name);
+        console.log(locationName);
+        renderWeatherLocationLock(locationName);
+        return;
       });
   }
 }
