@@ -67,7 +67,14 @@
 .geolocation {
   padding: 0px;
   color: #225b8f;
+  margin: -5px;
 }
+@media (min-width: 768px) {
+  .geolocation {
+    margin: 0px;
+  }
+}
+
 .geolocation div {
   padding-bottom: 4px;
 }
