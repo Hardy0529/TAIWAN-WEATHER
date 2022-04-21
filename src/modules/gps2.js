@@ -22,13 +22,13 @@ export function init() {
                                 </div>
                                 <div>
                                   <span class="phoneIp">
-                                    經度：
+                                    E:
                                   </span>
                                   ${my_lat}
                                 </div>
                                 <div>
                                   <span class="phoneIp">
-                                    緯度：
+                                  N:
                                   </span>
                                   ${my_lon}
                                 </div>`;
