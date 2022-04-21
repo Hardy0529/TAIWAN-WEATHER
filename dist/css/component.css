@@ -76,7 +76,7 @@
 }
 @media (min-width: 768px) {
   .geolocation span.phoneIp {
-    display: block;
+    display: inline-block;
   }
 }
 
