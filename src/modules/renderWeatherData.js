@@ -6,6 +6,10 @@ let weekWeatherData = null;
 
 const unitWeatherOfPage = 3;
 let weatherNum = 0;
+let startIndex = 0;
+let endIndex = 0;
+let refreshFlag = false;
+let locationLockFlag = false;
 const weatherContainer = document.querySelector(".weather__render");
 const weatherObserver = document.querySelector(".weather__render-observer");
 const timeRefresh = document.querySelector(".weather__UpdateTime > span");
@@ -14,29 +18,52 @@ const iconRefresh = document.querySelector(".icon-arrows-cw");
 const observerCallback = ([entry]) => {
     if (entry && entry.isIntersecting) {
         renderWeather();
-        weatherNum++;
     }
 };
 // 建立一個 intersection observer
 const observer = new IntersectionObserver(observerCallback);
 
 
-export function renderWeather(locationName=null) {
-    let startIndex = unitWeatherOfPage * weatherNum;
-    let maxLength = Math.min(hoursWeatherData.length, unitWeatherOfPage * (weatherNum + 1));
-    if(locationName) {
-        startIndex = hoursWeatherData.findIndex((element) => element.locationName == locationName);
-        maxLength = startIndex + 1;
-        observer.unobserve(weatherObserver);
-    }
-    if(startIndex > maxLength) {
-        observer.unobserve(weatherObserver);
-    }
-    renderWeather36Hours(startIndex, maxLength, locationName);
+export function renderWeatherLocationLock(locationName) {
+    locationLockFlag = true;
+    weatherContainer.innerHTML = "";
+    observer.observe(weatherObserver);
 }
 
-function renderWeather36Hours(startIndex, maxLength, locationName=null) {
-    for(let i = startIndex; i < maxLength; i++) {
+function renderWeather(locationName=null) {
+    // 重新計算 startIndex 和 endIndex
+    if(locationLockFlag) {
+        if(!refreshFlag) {
+            startIndex = hoursWeatherData.findIndex((element) => element.locationName == locationName);
+            if(startIndex == -1) {
+                endIndex = startIndex;
+            } else {
+                endIndex = startIndex + 1;
+            }
+        }
+    } else {
+        if(refreshFlag) {
+            // 將 startIndex 設為 0，更新畫面目前已顯示資訊
+            startIndex = 0;
+        } else {
+            startIndex = unitWeatherOfPage * weatherNum;
+            endIndex = Math.min(hoursWeatherData.length, startIndex + unitWeatherOfPage);
+        }
+    }
+    renderWeather36Hours(locationName);
+    // 有鎖定縣市位置 or 畫面已顯示出全部資料，停止監控
+    if(locationLockFlag || endIndex == hoursWeatherData.length) {
+        observer.unobserve(weatherObserver);
+    } 
+    if(refreshFlag) {
+        refreshFlag = false;
+    } else {
+        weatherNum++;
+    }
+}
+
+function renderWeather36Hours(locationName=null) {
+    for(let i = startIndex; i < endIndex; i++) {
         const weatherData=hoursWeatherData[i]
         const label = document.createElement("label");
         label.classList.add("weather__itme");
@@ -135,21 +162,28 @@ function renderWeatherWeek(locationName, container) {
 }
 
 async function init() {
-    hoursWeatherData = await getWeatherData36Hours();
-    weekWeatherData = await getWeatherDataWeek();
+    await loadData();
     // 資料載入，開始監測
     observer.observe(weatherObserver);
+}
+
+async function loadData() {
+    hoursWeatherData = await getWeatherData36Hours();
+    weekWeatherData = await getWeatherDataWeek();
     // 更新畫面時間
     const now = new Date();
     timeRefresh.textContent = `更新時間：${now.getMonth()}/${now.getDate()} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes()}:${now.getSeconds().toString().padStart(2, '0')}`;
 }
 
 
-window.addEventListener("DOMContentLoaded", () => {
-    init();
-});
+window.addEventListener("DOMContentLoaded", init);
 
-iconRefresh.addEventListener("click", (e) => {
+iconRefresh.addEventListener("click", async (e) => {
     e.preventDefault();
-    init();
+    // 更新資料
+    await loadData();
+    
+    refreshFlag = true;
+    weatherContainer.innerHTML = "";
+    observer.observe(weatherObserver);
 });
