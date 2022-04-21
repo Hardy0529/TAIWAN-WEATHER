@@ -17,13 +17,13 @@
     border-radius: 10px;
     border: none;
     padding: 10px 20px;
+}
+.weather__menu-bar-text{
     font-family: "Noto Sans TC", "Helvetica", "roboto", arial, sans-serif;
     font-weight: 900;
     font-size: 20px;
     color: #225b8f;
 }
-
-
 
 .weather__menu-bar-options{
     position: absolute;

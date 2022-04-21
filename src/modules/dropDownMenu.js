@@ -11,19 +11,19 @@ export function eventListenMenu() {
             renderOptions();
             dropDownMenuIcon.classList.remove("icon-down-open-big");
             dropDownMenuIcon.classList.add("icon-up-open-big");
-            e.stopPropagation();
             return;
         }
         if (e.target.className == "icon-up-open-big"){
             removeOptions();
             dropDownMenuIcon.classList.remove("icon-up-open-big");
             dropDownMenuIcon.classList.add("icon-down-open-big");
-            e.stopPropagation();
             return;
         }
         if (e.target.className == "weather__menu-bar-option"){
             let cityName = e.target.value;
+            let menuText = dropDownMenuBar.querySelector(".weather__menu-bar-text");
             removeOptions();
+            menuText.innerHTML = cityName;
             dropDownMenuIcon.classList.remove("icon-up-open-big");
             dropDownMenuIcon.classList.add("icon-down-open-big");
             return cityName;
