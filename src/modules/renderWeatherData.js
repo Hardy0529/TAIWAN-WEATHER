@@ -1,5 +1,6 @@
 import { getWeatherDataWeek, getWeatherData36Hours } from "./tool.js";
 import { getWeatherSVG } from "./weather-svg.js"
+import { startDataLoading, stopDataLoading } from "./weatherLoadingEffect.js"
 
 let hoursWeatherData = null;
 let weekWeatherData = null;
@@ -162,6 +163,7 @@ function renderWeatherWeek(locationName, container) {
 }
 
 async function init() {
+    startDataLoading("資料載入中");
     await loadData();
     // 資料載入，開始監測
     observer.observe(weatherObserver);
@@ -173,6 +175,8 @@ async function loadData() {
     // 更新畫面時間
     const now = new Date();
     timeRefresh.textContent = `更新時間：${now.getMonth()}/${now.getDate()} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes()}:${now.getSeconds().toString().padStart(2, '0')}`;
+
+    stopDataLoading();
 }
 
 
@@ -180,6 +184,7 @@ window.addEventListener("DOMContentLoaded", init);
 
 iconRefresh.addEventListener("click", async (e) => {
     e.preventDefault();
+    startDataLoading("資料更新中");
     // 更新資料
     await loadData();
     
