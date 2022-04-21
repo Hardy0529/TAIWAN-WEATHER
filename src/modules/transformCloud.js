@@ -1,5 +1,5 @@
 function init() {
-  //   alert(234);
+  alert(123);
 }
 
 init();
