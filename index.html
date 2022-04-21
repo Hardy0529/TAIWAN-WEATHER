@@ -5,30 +5,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TAIWAN Weather 台灣各縣市每週天氣預報</title>
-    <link rel="stylesheet" href="./dist/css/base.css" />
-    <link rel="stylesheet" href="./dist/css/layout.css" />
-    <link rel="stylesheet" href="./dist/css/component.css" />
+    <link rel="stylesheet" href="./dist/css/dropDownMenu.css" />
   </head>
   <body>
     <div class="wrapper">
+      <!-- Strat mouse -->
+      <div id="mouse">
+        <svg viewBox="-66 -30 100 100" style="fill: #86def5">
+          <circle class="cloud" cx="-30" cy="30" r="20"></circle>
+          <circle class="cloud" cx="-15" cy="30" r="20"></circle>
+          <circle class="cloud" cx="0" cy="30" r="20"></circle>
+          <circle class="cloud" cx="-25" cy="10" r="15"></circle>
+          <circle class="cloud" cx="-7" cy="15" r="15"></circle>
+        </svg>
+        <svg viewBox="-62 -33 100 100">
+          <circle class="cloud" cx="-30" cy="30" r="20"></circle>
+          <circle class="cloud" cx="-15" cy="30" r="20"></circle>
+          <circle class="cloud" cx="0" cy="30" r="20"></circle>
+          <circle class="cloud" cx="-25" cy="10" r="15"></circle>
+          <circle class="cloud" cx="-7" cy="15" r="15"></circle>
+        </svg>
+        <div class="geolocation" id="geolocationIp"></div>
+      </div>
+      <!-- End mouse -->
+
       <!-- Strat header -->
       <header class="header js-header">
         <div class="container">
           <div class="navbar navbar__collapse">
             <a href="index.html" class="navbar__logo"> 各縣市天氣預報 </a>
-
-            <div class="social-bar navbar__social-bar">
-              <a href="#" class="icon-btn">
-                <i class="icon icon-search"></i>
-              </a>
-            </div>
           </div>
         </div>
       </header>
       <!-- End header -->
 
       <!-- Start jumbotron -->
-      <section class="jumbotron">
+      <section class="jumbotron" id="js-jumbotron">
         <div class="jumbotron__bg">
           <div class="jumbotron__cloud jumbotron__cloud01">
             <div class="jumbotron__cloud-shadow"></div>
@@ -56,426 +68,20 @@
         <div class="container">
           <div class="weather__drop-down-menu">
             <div class="weather__UpdateTime">
-              <span> 更新時間：4/21 18:52 </span>
+              <span></span>
+              <a href="#" class="icon-btn">
+                <i class="icon icon-arrows-cw"></i>
+              </a>
             </div>
-            <form action="">
-              <select name="option">
-                <option value="" disabled="disabled" selected="selected">
-                  選擇縣市
-                </option>
-                <option value="新竹縣">新竹縣</option>
-                <option value="金門縣">金門縣</option>
-                <option value="苗栗縣">苗栗縣</option>
-                <option value="新北市">新北市</option>
-                <option value="宜蘭縣">宜蘭縣</option>
-                <option value="雲林縣">雲林縣</option>
-                <option value="臺南市">臺南市</option>
-                <option value="高雄市">高雄市</option>
-                <option value="彰化縣">彰化縣</option>
-                <option value="臺北市">臺北市</option>
-                <option value="南投縣">南投縣</option>
-                <option value="澎湖縣">澎湖縣</option>
-                <option value="基隆市">基隆市</option>
-                <option value="桃園市">桃園市</option>
-                <option value="花蓮縣">花蓮縣</option>
-                <option value="連江縣">連江縣</option>
-                <option value="臺東縣">臺東縣</option>
-                <option value="嘉義市">嘉義市</option>
-                <option value="嘉義縣">嘉義縣</option>
-                <option value="屏東縣">屏東縣</option>
-                <option value="臺中市">臺中市</option>
-                <option value="新竹市">新竹市</option></select
-              ><input class="btn" type="button" value="送出" />
-            </form>
+            <div class="weather__menu-bar">
+              <button class="weather__menu-bar-btn">
+                <span class="weather__menu-bar-text">-- 選擇縣市名稱 --</span
+                ><i id="weather__menu-bar-icon" class="icon-down-open-big"></i>
+              </button>
+            </div>
           </div>
-          <div class="weather__render">
-            <label class="weather__itme">
-              <input class="switch_weather" type="checkbox" />
-              <div class="weather__weekWeather">
-                <div class="weather__weekWeather-item">
-                  <h3>MON</h3>
-                  <svg viewbox="-50 -50 100 100">
-                    <circle class="sun" cx="0" cy="0" r="22"></circle>
-                  </svg>
-                </div>
-                <div class="weather__weekWeather-item">
-                  <h3>TUE</h3>
-                  <svg viewbox="-50 -50 100 100">
-                    <circle class="sun" cx="0" cy="0" r="22"></circle>
-                  </svg>
-                </div>
-                <div class="weather__weekWeather-item">
-                  <h3>WED</h3>
-                  <svg viewbox="-50 -50 100 100">
-                    <circle class="sun" cx="0" cy="0" r="22"></circle>
-                    <circle class="cloud" cx="-30" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="-15" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="0" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="-25" cy="10" r="15"></circle>
-                    <circle class="cloud" cx="-7" cy="15" r="15"></circle>
-                  </svg>
-                </div>
-                <div class="weather__weekWeather-item">
-                  <h3>THU</h3>
-                  <svg viewbox="-50 -50 100 100">
-                    <circle class="sun" cx="0" cy="0" r="22"></circle>
-                    <circle class="cloud" cx="-30" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="-15" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="0" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="-25" cy="10" r="15"></circle>
-                    <circle class="cloud" cx="-7" cy="15" r="15"></circle>
-                  </svg>
-                </div>
-                <div class="weather__weekWeather-item">
-                  <h3>FRI</h3>
-                  <svg viewbox="-50 -50 100 100">
-                    <circle class="sun" cx="0" cy="0" r="22"></circle>
-                  </svg>
-                </div>
-                <div class="weather__weekWeather-item">
-                  <h3>SAT</h3>
-                  <svg viewbox="-63 -40 100 100">
-                    <circle class="cloud" cx="-30" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="-15" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="0" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="-25" cy="10" r="15"></circle>
-                    <circle class="cloud" cx="-7" cy="15" r="15"></circle>
-                  </svg>
-                </div>
-                <div class="weather__weekWeather-item">
-                  <h3>SUN</h3>
-                  <svg viewbox="-63 -40 100 100">
-                    <line class="rain" x1="-25" y1="15" x2="-25" y2="35"></line>
-                    <line class="rain" x1="-14" y1="5" x2="-14" y2="25"></line>
-                    <line class="rain" x1="-5" y1="20" x2="-5" y2="45"></line>
-                    <circle class="cloud" cx="-30" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="-15" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="0" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="-25" cy="10" r="15"></circle>
-                    <circle class="cloud" cx="-7" cy="15" r="15"></circle>
-                  </svg>
-                </div>
-              </div>
-              <div class="weather__info">
-                <div class="weather__info-county">新北市</div>
-                <div>
-                  <div class="weather__info-temperature">26°C</div>
-                  <div class="weather__info-meteorological">多雲短雨</div>
-                </div>
-              </div>
-              <div class="weather__chart">
-                <div class="weather__dayweather">
-                  <div class="weather__chart-time">6 PM</div>
-                  <div class="weather__chart-temperature">22°C</div>
-                  <div class="weather__dayweather-icon">
-                    <svg viewbox="-50 -50 100 100">
-                      <circle class="sun" cx="0" cy="0" r="22"></circle>
-                    </svg>
-                  </div>
-                </div>
-                <div class="weather__dayweather">
-                  <div class="weather__chart-time">6 PM</div>
-                  <div class="weather__chart-temperature">22°C</div>
-                  <div class="weather__dayweather-icon">
-                    <svg viewbox="-50 -50 100 100">
-                      <circle class="sun" cx="0" cy="0" r="22"></circle>
-                      <circle class="cloud" cx="-30" cy="30" r="20"></circle>
-                      <circle class="cloud" cx="-15" cy="30" r="20"></circle>
-                      <circle class="cloud" cx="0" cy="30" r="20"></circle>
-                      <circle class="cloud" cx="-25" cy="10" r="15"></circle>
-                      <circle class="cloud" cx="-7" cy="15" r="15"></circle>
-                    </svg>
-                  </div>
-                </div>
-                <div class="weather__dayweather">
-                  <div class="weather__chart-time">6 PM</div>
-                  <div class="weather__chart-temperature">22°C</div>
-                  <div class="weather__dayweather-icon">
-                    <svg viewbox="-63 -40 100 100">
-                      <line
-                        class="rain"
-                        x1="-25"
-                        y1="15"
-                        x2="-25"
-                        y2="35"
-                      ></line>
-                      <line
-                        class="rain"
-                        x1="-14"
-                        y1="5"
-                        x2="-14"
-                        y2="25"
-                      ></line>
-                      <line class="rain" x1="-5" y1="20" x2="-5" y2="45"></line>
-                      <circle class="cloud" cx="-30" cy="30" r="20"></circle>
-                      <circle class="cloud" cx="-15" cy="30" r="20"></circle>
-                      <circle class="cloud" cx="0" cy="30" r="20"></circle>
-                      <circle class="cloud" cx="-25" cy="10" r="15"></circle>
-                      <circle class="cloud" cx="-7" cy="15" r="15"></circle>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </label>
-
-            <label class="weather__itme">
-              <input class="switch_weather" type="checkbox" />
-              <div class="weather__weekWeather">
-                <div class="weather__weekWeather-item">
-                  <h3>MON</h3>
-                  <svg viewbox="-50 -50 100 100">
-                    <circle class="sun" cx="0" cy="0" r="22"></circle>
-                  </svg>
-                </div>
-                <div class="weather__weekWeather-item">
-                  <h3>TUE</h3>
-                  <svg viewbox="-50 -50 100 100">
-                    <circle class="sun" cx="0" cy="0" r="22"></circle>
-                  </svg>
-                </div>
-                <div class="weather__weekWeather-item">
-                  <h3>WED</h3>
-                  <svg viewbox="-50 -50 100 100">
-                    <circle class="sun" cx="0" cy="0" r="22"></circle>
-                    <circle class="cloud" cx="-30" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="-15" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="0" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="-25" cy="10" r="15"></circle>
-                    <circle class="cloud" cx="-7" cy="15" r="15"></circle>
-                  </svg>
-                </div>
-                <div class="weather__weekWeather-item">
-                  <h3>THU</h3>
-                  <svg viewbox="-50 -50 100 100">
-                    <circle class="sun" cx="0" cy="0" r="22"></circle>
-                    <circle class="cloud" cx="-30" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="-15" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="0" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="-25" cy="10" r="15"></circle>
-                    <circle class="cloud" cx="-7" cy="15" r="15"></circle>
-                  </svg>
-                </div>
-                <div class="weather__weekWeather-item">
-                  <h3>FRI</h3>
-                  <svg viewbox="-50 -50 100 100">
-                    <circle class="sun" cx="0" cy="0" r="22"></circle>
-                  </svg>
-                </div>
-                <div class="weather__weekWeather-item">
-                  <h3>SAT</h3>
-                  <svg viewbox="-63 -40 100 100">
-                    <circle class="cloud" cx="-30" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="-15" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="0" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="-25" cy="10" r="15"></circle>
-                    <circle class="cloud" cx="-7" cy="15" r="15"></circle>
-                  </svg>
-                </div>
-                <div class="weather__weekWeather-item">
-                  <h3>SUN</h3>
-                  <svg viewbox="-63 -40 100 100">
-                    <line class="rain" x1="-25" y1="15" x2="-25" y2="35"></line>
-                    <line class="rain" x1="-14" y1="5" x2="-14" y2="25"></line>
-                    <line class="rain" x1="-5" y1="20" x2="-5" y2="45"></line>
-                    <circle class="cloud" cx="-30" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="-15" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="0" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="-25" cy="10" r="15"></circle>
-                    <circle class="cloud" cx="-7" cy="15" r="15"></circle>
-                  </svg>
-                </div>
-              </div>
-              <div class="weather__info">
-                <div class="weather__info-county">新北市</div>
-                <div>
-                  <div class="weather__info-temperature">26°C</div>
-                  <div class="weather__info-meteorological">多雲短雨</div>
-                </div>
-              </div>
-              <div class="weather__chart">
-                <div class="weather__dayweather">
-                  <div class="weather__chart-time">6 PM</div>
-                  <div class="weather__chart-temperature">22°C</div>
-                  <div class="weather__dayweather-icon">
-                    <svg viewbox="-50 -50 100 100">
-                      <circle class="sun" cx="0" cy="0" r="22"></circle>
-                    </svg>
-                  </div>
-                </div>
-                <div class="weather__dayweather">
-                  <div class="weather__chart-time">6 PM</div>
-                  <div class="weather__chart-temperature">22°C</div>
-                  <div class="weather__dayweather-icon">
-                    <svg viewbox="-50 -50 100 100">
-                      <circle class="sun" cx="0" cy="0" r="22"></circle>
-                      <circle class="cloud" cx="-30" cy="30" r="20"></circle>
-                      <circle class="cloud" cx="-15" cy="30" r="20"></circle>
-                      <circle class="cloud" cx="0" cy="30" r="20"></circle>
-                      <circle class="cloud" cx="-25" cy="10" r="15"></circle>
-                      <circle class="cloud" cx="-7" cy="15" r="15"></circle>
-                    </svg>
-                  </div>
-                </div>
-                <div class="weather__dayweather">
-                  <div class="weather__chart-time">6 PM</div>
-                  <div class="weather__chart-temperature">22°C</div>
-                  <div class="weather__dayweather-icon">
-                    <svg viewbox="-63 -40 100 100">
-                      <line
-                        class="rain"
-                        x1="-25"
-                        y1="15"
-                        x2="-25"
-                        y2="35"
-                      ></line>
-                      <line
-                        class="rain"
-                        x1="-14"
-                        y1="5"
-                        x2="-14"
-                        y2="25"
-                      ></line>
-                      <line class="rain" x1="-5" y1="20" x2="-5" y2="45"></line>
-                      <circle class="cloud" cx="-30" cy="30" r="20"></circle>
-                      <circle class="cloud" cx="-15" cy="30" r="20"></circle>
-                      <circle class="cloud" cx="0" cy="30" r="20"></circle>
-                      <circle class="cloud" cx="-25" cy="10" r="15"></circle>
-                      <circle class="cloud" cx="-7" cy="15" r="15"></circle>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </label>
-
-            <label class="weather__itme">
-              <input class="switch_weather" type="checkbox" />
-              <div class="weather__weekWeather">
-                <div class="weather__weekWeather-item">
-                  <h3>MON</h3>
-                  <svg viewbox="-50 -50 100 100">
-                    <circle class="sun" cx="0" cy="0" r="22"></circle>
-                  </svg>
-                </div>
-                <div class="weather__weekWeather-item">
-                  <h3>TUE</h3>
-                  <svg viewbox="-50 -50 100 100">
-                    <circle class="sun" cx="0" cy="0" r="22"></circle>
-                  </svg>
-                </div>
-                <div class="weather__weekWeather-item">
-                  <h3>WED</h3>
-                  <svg viewbox="-50 -50 100 100">
-                    <circle class="sun" cx="0" cy="0" r="22"></circle>
-                    <circle class="cloud" cx="-30" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="-15" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="0" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="-25" cy="10" r="15"></circle>
-                    <circle class="cloud" cx="-7" cy="15" r="15"></circle>
-                  </svg>
-                </div>
-                <div class="weather__weekWeather-item">
-                  <h3>THU</h3>
-                  <svg viewbox="-50 -50 100 100">
-                    <circle class="sun" cx="0" cy="0" r="22"></circle>
-                    <circle class="cloud" cx="-30" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="-15" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="0" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="-25" cy="10" r="15"></circle>
-                    <circle class="cloud" cx="-7" cy="15" r="15"></circle>
-                  </svg>
-                </div>
-                <div class="weather__weekWeather-item">
-                  <h3>FRI</h3>
-                  <svg viewbox="-50 -50 100 100">
-                    <circle class="sun" cx="0" cy="0" r="22"></circle>
-                  </svg>
-                </div>
-                <div class="weather__weekWeather-item">
-                  <h3>SAT</h3>
-                  <svg viewbox="-63 -40 100 100">
-                    <circle class="cloud" cx="-30" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="-15" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="0" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="-25" cy="10" r="15"></circle>
-                    <circle class="cloud" cx="-7" cy="15" r="15"></circle>
-                  </svg>
-                </div>
-                <div class="weather__weekWeather-item">
-                  <h3>SUN</h3>
-                  <svg viewbox="-63 -40 100 100">
-                    <line class="rain" x1="-25" y1="15" x2="-25" y2="35"></line>
-                    <line class="rain" x1="-14" y1="5" x2="-14" y2="25"></line>
-                    <line class="rain" x1="-5" y1="20" x2="-5" y2="45"></line>
-                    <circle class="cloud" cx="-30" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="-15" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="0" cy="30" r="20"></circle>
-                    <circle class="cloud" cx="-25" cy="10" r="15"></circle>
-                    <circle class="cloud" cx="-7" cy="15" r="15"></circle>
-                  </svg>
-                </div>
-              </div>
-              <div class="weather__info">
-                <div class="weather__info-county">新北市</div>
-                <div>
-                  <div class="weather__info-temperature">26°C</div>
-                  <div class="weather__info-meteorological">多雲短雨</div>
-                </div>
-              </div>
-              <div class="weather__chart">
-                <div class="weather__dayweather">
-                  <div class="weather__chart-time">6 PM</div>
-                  <div class="weather__chart-temperature">22°C</div>
-                  <div class="weather__dayweather-icon">
-                    <svg viewbox="-50 -50 100 100">
-                      <circle class="sun" cx="0" cy="0" r="22"></circle>
-                    </svg>
-                  </div>
-                </div>
-                <div class="weather__dayweather">
-                  <div class="weather__chart-time">6 PM</div>
-                  <div class="weather__chart-temperature">22°C</div>
-                  <div class="weather__dayweather-icon">
-                    <svg viewbox="-50 -50 100 100">
-                      <circle class="sun" cx="0" cy="0" r="22"></circle>
-                      <circle class="cloud" cx="-30" cy="30" r="20"></circle>
-                      <circle class="cloud" cx="-15" cy="30" r="20"></circle>
-                      <circle class="cloud" cx="0" cy="30" r="20"></circle>
-                      <circle class="cloud" cx="-25" cy="10" r="15"></circle>
-                      <circle class="cloud" cx="-7" cy="15" r="15"></circle>
-                    </svg>
-                  </div>
-                </div>
-                <div class="weather__dayweather">
-                  <div class="weather__chart-time">6 PM</div>
-                  <div class="weather__chart-temperature">22°C</div>
-                  <div class="weather__dayweather-icon">
-                    <svg viewbox="-63 -40 100 100">
-                      <line
-                        class="rain"
-                        x1="-25"
-                        y1="15"
-                        x2="-25"
-                        y2="35"
-                      ></line>
-                      <line
-                        class="rain"
-                        x1="-14"
-                        y1="5"
-                        x2="-14"
-                        y2="25"
-                      ></line>
-                      <line class="rain" x1="-5" y1="20" x2="-5" y2="45"></line>
-                      <circle class="cloud" cx="-30" cy="30" r="20"></circle>
-                      <circle class="cloud" cx="-15" cy="30" r="20"></circle>
-                      <circle class="cloud" cx="0" cy="30" r="20"></circle>
-                      <circle class="cloud" cx="-25" cy="10" r="15"></circle>
-                      <circle class="cloud" cx="-7" cy="15" r="15"></circle>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </label>
-          </div>
+          <div class="weather__render"></div>
+          <div class="weather__render-observer"></div>
         </div>
       </div>
       <!-- End Weather -->
@@ -490,41 +96,4 @@
     </div>
   </body>
   <script src="./dist/js/bundle.js"></script>
-
-  <script>
-    // fetch(
-    //   "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-091?Authorization=CWB-EF46CCF9-7FB5-4120-AA40-CFDDA8BC249C"
-    // )
-    //   .then((response) => {
-    //     return response.json();
-    //   })
-    //   .then((data) => {
-    //     console.log(data);
-    //     data =
-    //       data.records.locations[0].location[0].weatherElement[1].time[0]
-    //         .elementValue[0].value;
-
-    //     let temperatureData = document.querySelector("#temperatureData");
-    //     temperatureData.innerHTML = data + "°C";
-    //   });
-
-    // add html and css
-    // for (let i = 0; i < 4; i++) {
-    //   let link = document.createElement("link");
-    //   link.rel = "stylesheet";
-    //   link.type = "text/css";
-    //   link.href = "css/style-" + i + ".css";
-    //   document.getElementsByTagName("head")[0].appendChild(link);
-    //   let item = document.createElement("div");
-    //   item.className = "user user-" + i;
-    //   //   item.textContent = "User Number " + i;
-    //   document.getElementById("users").appendChild(item);
-    // }
-    // // add javascript
-    // for (let i = 0; i < 4; i++) {
-    //   let script = document.createElement("script");
-    //   script.src = "js/code-" + i + ".js";
-    //   document.body.appendChild(script);
-    // }
-  </script>
 </html>
