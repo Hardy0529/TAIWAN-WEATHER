@@ -4,7 +4,10 @@ import headerColorChange from "./modules/headerColorChange.js";
 // Transform Cloud
 import transformCloud from "./modules/transformCloud.js";
 
-import GPS from "./modules/GPS.js";
+// gps2
+import gps2 from "./modules/gps2.js";
+
+// import GPS from "./modules/GPS.js";
 import dropDownMenu from "./modules/dropDownMenu.js";
 import renderEeatherData from "./modules/renderWeatherData.js";
 import { linkCss } from "./modules/tool.js";
