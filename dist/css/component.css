@@ -21,6 +21,47 @@
 }
 
 /*-------------------------*/
+/* $mouse
+---------------------------*/
+#mouse {
+  position: absolute;
+  top: 25px;
+  left: calc(100% - 150px);
+  -webkit-transform: translate(-5%, -5%);
+  -ms-transform: translate(-5%, -5%);
+  transform: translate(-5%, -5%);
+  z-index: 99;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  -webkit-transition-timing-function: linear;
+  -o-transition-timing-function: linear;
+  transition-timing-function: linear;
+  pointer-events: none;
+}
+#mouse svg {
+  fill: #f2f9fe;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%) rotate(4deg);
+  -ms-transform: translate(-50%, -50%) rotate(4deg);
+  transform: translate(-50%, -50%) rotate(4deg);
+  width: 188px;
+}
+#mouse .geolocation {
+  top: 20px;
+  font-family: "Noto Sans TC", "Helvetica", "roboto", arial, sans-serif;
+  font-weight: 900;
+  font-size: 12px;
+  line-height: 0.8rem;
+  -webkit-transform: rotate(-0.5deg);
+  -ms-transform: rotate(-0.5deg);
+  transform: rotate(-0.5deg);
+  white-space: nowrap;
+}
+
+/*-------------------------*/
 /* $Elements
 ---------------------------*/
 /* btn */
@@ -68,9 +109,13 @@
 .icon-btn .icon {
   display: block;
   text-align: center;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
   transition: all 0.3s;
 }
 .icon-btn .icon:hover {
+  -webkit-transform: translateY(-20%);
+  -ms-transform: translateY(-20%);
   transform: translateY(-20%);
 }
 
@@ -84,10 +129,13 @@
   left: 0;
   width: 100%;
   z-index: 100;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
   transition: all 0.3s;
 }
 .header--colored {
   background-color: #fefefe;
+  -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
 }
 .header--colored .navbar__logo {
@@ -133,6 +181,16 @@
   color: #225b8f;
 }
 
+/* Geolocation */
+.geolocation {
+  padding: 12px 15px;
+  color: #225b8f;
+}
+.geolocation span {
+  display: block;
+  padding-bottom: 4px;
+}
+
 /*-------------------------*/
 /* $Jumbotron
 ---------------------------*/
@@ -160,6 +218,12 @@
   color: #ffffff;
   margin: 0px;
   text-align: center;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  -webkit-transition-timing-function: linear;
+  -o-transition-timing-function: linear;
+  transition-timing-function: linear;
 }
 @media (min-width: 768px) {
   .jumbotron__heading {
@@ -170,6 +234,8 @@
 
 .jumbotron__heading span {
   display: block;
+  -webkit-transform: skewY(-10.5deg);
+  -ms-transform: skewY(-10.5deg);
   transform: skewY(-10.5deg);
   text-shadow: -0.08em 0.08em 0.05em #225b8f;
   /*
@@ -200,6 +266,8 @@
   z-index: 50;
   -webkit-animation: floating 3s infinite;
   animation: floating 3s infinite;
+  -webkit-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
   transition-duration: 0.5s;
 }
 
@@ -208,8 +276,16 @@
   background-color: #86def5;
   left: 3%;
   top: 80%;
+  -webkit-transform: rotate(-17.5deg);
+  -ms-transform: rotate(-17.5deg);
   transform: rotate(-17.5deg);
   display: none;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  -webkit-transition-timing-function: linear;
+  -o-transition-timing-function: linear;
+  transition-timing-function: linear;
 }
 @media (min-width: 576px) {
   .jumbotron__cloud01 {
@@ -231,10 +307,18 @@
 /* cloud 02 */
 .jumbotron__cloud02 {
   background-color: #86def5;
-  right: 5%;
-  top: 25%;
+  right: 10%;
+  top: 50%;
+  -webkit-transform: rotate(10.5deg);
+  -ms-transform: rotate(10.5deg);
   transform: rotate(10.5deg);
   display: none;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  -webkit-transition-timing-function: linear;
+  -o-transition-timing-function: linear;
+  transition-timing-function: linear;
 }
 @media (min-width: 576px) {
   .jumbotron__cloud02 {
@@ -258,7 +342,15 @@
   background-color: #86def5;
   left: 8%;
   top: 40%;
+  -webkit-transform: rotate(-10.5deg);
+  -ms-transform: rotate(-10.5deg);
   transform: rotate(-10.5deg);
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  -webkit-transition-timing-function: linear;
+  -o-transition-timing-function: linear;
+  transition-timing-function: linear;
 }
 @media (min-width: 768px) {
   .jumbotron__cloud03 {
@@ -352,7 +444,10 @@
   padding-bottom: 16px;
   margin-bottom: 24px;
   border-radius: 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   overflow: hidden;
 }
@@ -375,11 +470,21 @@
 
 /* switch Info  */
 .weather__info {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 100%;
   flex: 1 1 100%;
   text-align: center;
+  -webkit-box-ordinal-group: 2;
+  -ms-flex-order: 1;
   order: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   background-color: rgba(34, 91, 143, 0.1);
   padding-top: 8px;
@@ -392,6 +497,8 @@
     padding-bottom: 0px;
     margin-bottom: 0px;
     display: block;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 150px;
     flex: 1 1 150px;
     border-bottom: none;
     border-right: 2px solid #225b8f;
@@ -444,19 +551,32 @@
 }
 
 .weather__chart {
+  -webkit-box-ordinal-group: 3;
+  -ms-flex-order: 2;
   order: 2;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 100%;
   flex: 1 1 100%;
 
+  display: -webkit-box;
+
+  display: -ms-flexbox;
+
   display: flex;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 @media (min-width: 576px) {
   .weather__chart {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 calc(100% - 150px);
     flex: 1 1 calc(100% - 150px);
   }
 }
 .weather__chart .weather__dayweather {
   width: calc(100% / 3);
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
   flex: 1 1 auto;
   text-align: center;
   border-right: 2px solid #86def5;
@@ -481,8 +601,14 @@
   line-height: 28.6px;
   color: #225b8f;
   padding: 0px 24px 0px 24px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 @media (min-width: 576px) {
@@ -515,39 +641,51 @@
   stroke-dasharray: 5px;
   -webkit-animation: sun 3s infinite linear both;
   animation: sun 3s infinite linear both;
+  -webkit-transform: translate(-3%, 0%);
+  -ms-transform: translate(-3%, 0%);
   transform: translate(-3%, 0%);
 }
 @-webkit-keyframes sun {
   0% {
+    -webkit-transform: translate(-3%, 0%);
     transform: translate(-3%, 0%);
   }
   25% {
+    -webkit-transform: translate(5%, 0%);
     transform: translate(5%, 0%);
   }
   50% {
+    -webkit-transform: translate(5%, 3%);
     transform: translate(5%, 3%);
   }
   75% {
+    -webkit-transform: translate(-3%, 3%);
     transform: translate(-3%, 3%);
   }
   100% {
+    -webkit-transform: translate(-3%, 0%);
     transform: translate(-3%, 0%);
   }
 }
 @keyframes sun {
   0% {
+    -webkit-transform: translate(-3%, -3%);
     transform: translate(-3%, -3%);
   }
   25% {
+    -webkit-transform: translate(3%, -3%);
     transform: translate(3%, -3%);
   }
   50% {
+    -webkit-transform: translate(3%, 3%);
     transform: translate(3%, 3%);
   }
   75% {
+    -webkit-transform: translate(-3%, 3%);
     transform: translate(-3%, 3%);
   }
   100% {
+    -webkit-transform: translate(-3%, -3%);
     transform: translate(-3%, -3%);
   }
 }
@@ -561,11 +699,14 @@ svg .rain {
   animation: rain 1s infinite linear;
   left: 45px;
   bottom: 15px;
+  -webkit-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
   transition-duration: 0.5s;
 }
 
 @-webkit-keyframes rain {
   0% {
+    -webkit-transform: translateY(0px);
     transform: translateY(0px);
     opacity: 1;
   }
@@ -573,6 +714,7 @@ svg .rain {
     opacity: 0.4;
   }
   100% {
+    -webkit-transform: translateY(60px);
     transform: translateY(60px);
     opacity: 0;
   }
@@ -580,6 +722,7 @@ svg .rain {
 
 @keyframes rain {
   0% {
+    -webkit-transform: translateY(0px);
     transform: translateY(0px);
     opacity: 1;
   }
@@ -587,6 +730,7 @@ svg .rain {
     opacity: 0.4;
   }
   100% {
+    -webkit-transform: translateY(60px);
     transform: translateY(60px);
     opacity: 0;
   }
@@ -600,28 +744,77 @@ svg .rain {
 /* cloud */
 .weather__dayweather svg .cloud {
   fill: #c8c8c8;
+  -webkit-animation: cloud 3s infinite linear both;
+  animation: cloud 3s infinite linear both;
+  -webkit-transform: translateX(5px);
+  -ms-transform: translateX(5px);
+  transform: translateX(5px);
+}
+@-webkit-keyframes cloud {
+  0% {
+    -webkit-transform: translateX(5px);
+    transform: translateX(5px);
+  }
+  70% {
+    -webkit-transform: translateX(-5px);
+    transform: translateX(-5px);
+  }
+  100% {
+    -webkit-transform: translateX(5px);
+    transform: translateX(5px);
+  }
+}
+
+@keyframes cloud {
+  0% {
+    -webkit-transform: translateX(5px);
+    transform: translateX(5px);
+  }
+  70% {
+    -webkit-transform: translateX(-5px);
+    transform: translateX(-5px);
+  }
+  100% {
+    -webkit-transform: translateX(5px);
+    transform: translateX(5px);
+  }
 }
 
 .weather__weekWeather {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   width: 100%;
   text-align: center;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
   transition: 0.5s;
   height: 0px;
+  -webkit-box-ordinal-group: 4;
+  -ms-flex-order: 3;
   order: 3;
 }
 
 .switch_weather:checked + .weather__weekWeather .weather__weekWeather-item {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
   flex: 1 1 auto;
   margin-top: 15px;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
   transition: 0.3s;
   opacity: 1;
   top: 0px;
 }
 .weather__weekWeather-item {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
   flex: 1 1 auto;
   margin-top: 10px;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
   transition: 0.3s;
   opacity: 0;
 
@@ -630,36 +823,50 @@ svg .rain {
 .switch_weather:checked
   + .weather__weekWeather
   .weather__weekWeather-item:nth-child(1) {
+  -webkit-transition-delay: 0.2s;
+  -o-transition-delay: 0.2s;
   transition-delay: 0.2s;
 }
 .switch_weather:checked
   + .weather__weekWeather
   .weather__weekWeather-item:nth-child(2) {
+  -webkit-transition-delay: 0.3s;
+  -o-transition-delay: 0.3s;
   transition-delay: 0.3s;
 }
 .switch_weather:checked
   + .weather__weekWeather
   .weather__weekWeather-item:nth-child(3) {
+  -webkit-transition-delay: 0.4s;
+  -o-transition-delay: 0.4s;
   transition-delay: 0.4s;
 }
 .switch_weather:checked
   + .weather__weekWeather
   .weather__weekWeather-item:nth-child(4) {
+  -webkit-transition-delay: 0.5s;
+  -o-transition-delay: 0.5s;
   transition-delay: 0.5s;
 }
 .switch_weather:checked
   + .weather__weekWeather
   .weather__weekWeather-item:nth-child(5) {
+  -webkit-transition-delay: 0.6s;
+  -o-transition-delay: 0.6s;
   transition-delay: 0.6s;
 }
 .switch_weather:checked
   + .weather__weekWeather
   .weather__weekWeather-item:nth-child(6) {
+  -webkit-transition-delay: 0.7s;
+  -o-transition-delay: 0.7s;
   transition-delay: 0.7s;
 }
 .switch_weather:checked
   + .weather__weekWeather
   .weather__weekWeather-item:nth-child(7) {
+  -webkit-transition-delay: 0.8s;
+  -o-transition-delay: 0.8s;
   transition-delay: 0.8s;
 }
 

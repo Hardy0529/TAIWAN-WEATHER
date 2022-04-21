@@ -9,24 +9,38 @@
   </head>
   <body>
     <div class="wrapper">
+      <!-- Strat mouse -->
+      <div id="mouse">
+        <svg viewBox="-66 -30 100 100" style="fill: #86def5">
+          <circle class="cloud" cx="-30" cy="30" r="20"></circle>
+          <circle class="cloud" cx="-15" cy="30" r="20"></circle>
+          <circle class="cloud" cx="0" cy="30" r="20"></circle>
+          <circle class="cloud" cx="-25" cy="10" r="15"></circle>
+          <circle class="cloud" cx="-7" cy="15" r="15"></circle>
+        </svg>
+        <svg viewBox="-62 -33 100 100">
+          <circle class="cloud" cx="-30" cy="30" r="20"></circle>
+          <circle class="cloud" cx="-15" cy="30" r="20"></circle>
+          <circle class="cloud" cx="0" cy="30" r="20"></circle>
+          <circle class="cloud" cx="-25" cy="10" r="15"></circle>
+          <circle class="cloud" cx="-7" cy="15" r="15"></circle>
+        </svg>
+        <div class="geolocation" id="geolocationIp"></div>
+      </div>
+      <!-- End mouse -->
+
       <!-- Strat header -->
       <header class="header js-header">
         <div class="container">
           <div class="navbar navbar__collapse">
             <a href="index.html" class="navbar__logo"> 各縣市天氣預報 </a>
-
-            <div class="social-bar navbar__social-bar">
-              <a href="#" class="icon-btn">
-                <i class="icon icon-search"></i>
-              </a>
-            </div>
           </div>
         </div>
       </header>
       <!-- End header -->
 
       <!-- Start jumbotron -->
-      <section class="jumbotron">
+      <section class="jumbotron" id="js-jumbotron">
         <div class="jumbotron__bg">
           <div class="jumbotron__cloud jumbotron__cloud01">
             <div class="jumbotron__cloud-shadow"></div>
@@ -82,40 +96,4 @@
     </div>
   </body>
   <script src="./dist/js/bundle.js"></script>
-  <script>
-    // fetch(
-    //   "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-091?Authorization=CWB-EF46CCF9-7FB5-4120-AA40-CFDDA8BC249C"
-    // )
-    //   .then((response) => {
-    //     return response.json();
-    //   })
-    //   .then((data) => {
-    //     console.log(data);
-    //     data =
-    //       data.records.locations[0].location[0].weatherElement[1].time[0]
-    //         .elementValue[0].value;
-
-    //     let temperatureData = document.querySelector("#temperatureData");
-    //     temperatureData.innerHTML = data + "°C";
-    //   });
-
-    // add html and css
-    // for (let i = 0; i < 4; i++) {
-    //   let link = document.createElement("link");
-    //   link.rel = "stylesheet";
-    //   link.type = "text/css";
-    //   link.href = "css/style-" + i + ".css";
-    //   document.getElementsByTagName("head")[0].appendChild(link);
-    //   let item = document.createElement("div");
-    //   item.className = "user user-" + i;
-    //   //   item.textContent = "User Number " + i;
-    //   document.getElementById("users").appendChild(item);
-    // }
-    // // add javascript
-    // for (let i = 0; i < 4; i++) {
-    //   let script = document.createElement("script");
-    //   script.src = "js/code-" + i + ".js";
-    //   document.body.appendChild(script);
-    // }
-  </script>
 </html>
