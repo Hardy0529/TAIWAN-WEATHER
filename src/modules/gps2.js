@@ -1,10 +1,11 @@
 import { renderWeatherLocationLock } from "./renderWeatherData";
+import { stopDataLoading } from "./weatherLoadingEffect";
 
-function init() {
+export function init() {
   //取得 經緯度
   if (navigator.geolocation) {
     //
-    navigator.geolocation.getCurrentPosition(showPosition); //有拿到位置就呼叫 showPosition 函式
+    navigator.geolocation.getCurrentPosition(showPosition, error); //有拿到位置就呼叫 showPosition 函式
   } else {
     m.innerHTML =
       "您的瀏覽器不支援 顯示地理位置 API ，請使用其它瀏覽器開啟 這個網址";
@@ -22,7 +23,7 @@ function init() {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         let city = data["records"]["locations"][0]["location"];
         city.forEach((element) => {
           let lat = element["lat"];
@@ -38,11 +39,16 @@ function init() {
             locationName = element["locationName"];
           }
         });
-        console.log(locationName);
+        // console.log(locationName);
         renderWeatherLocationLock(locationName);
+        stopDataLoading();
         return;
       });
   }
+
+  function error() {
+    stopDataLoading();
+  }
 }
 
-init();
+// init();
