@@ -1,6 +1,7 @@
 import { getWeatherDataWeek, getWeatherData36Hours } from "./tool.js";
 import { getWeatherSVG } from "./weather-svg.js"
 import { startDataLoading, stopDataLoading } from "./weatherLoadingEffect.js"
+import { init as gpsInit } from "./gps2";
 
 let hoursWeatherData = null;
 let weekWeatherData = null;
@@ -176,6 +177,8 @@ async function init() {
     await loadData();
     // 資料載入，開始監測
     observer.observe(weatherObserver);
+
+    gpsInit();
 }
 
 async function loadData() {
@@ -184,8 +187,6 @@ async function loadData() {
     // 更新畫面時間
     const now = new Date();
     timeRefresh.textContent = `更新時間：${now.getMonth() + 1}/${now.getDate().toString().padStart(2, '0')} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
-
-    stopDataLoading();
 }
 
 
@@ -196,7 +197,9 @@ iconRefresh.addEventListener("click", async (e) => {
     startDataLoading("資料更新中");
     // 更新資料
     await loadData();
-    
+
+    stopDataLoading();
+
     refreshFlag = true;
     weatherContainer.innerHTML = "";
     observer.observe(weatherObserver);
