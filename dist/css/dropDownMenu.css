@@ -48,6 +48,7 @@
     border: 1px solid lightgray;
     border-radius: 5px;
     cursor: pointer;
+    transition: 0.5s;
 }
 
 .weather__menu-bar-option:hover, .weather__menu-bar-option:focus{
@@ -60,11 +61,14 @@
 
 /* icon */
 .icon-down-open-big, .icon-up-open-big{
+    font-size: 24px;
     color: #225b8f;
     cursor: pointer;
 }
 .icon-down-open-big:hover, .icon-up-open-big:hover{
+    font-size: 28px;
     color: #163a5b;
+    transition: 0.5s;
 }
 
 @media (min-width: 576px) {
