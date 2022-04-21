@@ -17,7 +17,21 @@ export function init() {
     let locationName = "台北";
 
     let geolocationIp = document.querySelector("#geolocationIp");
-    geolocationIp.innerHTML = `<span>您的地理位置</span><span>經度：${my_lat}</span><span>緯度：${my_lon}</span>`;
+    geolocationIp.innerHTML = ` <div>
+                                您的地理位置
+                                </div>
+                                <div>
+                                  <span class="phoneIp">
+                                    經度：
+                                  </span>
+                                  ${my_lat}
+                                </div>
+                                <div>
+                                  <span class="phoneIp">
+                                    緯度：
+                                  </span>
+                                  ${my_lon}
+                                </div>`;
 
     fetch(
       "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-091?Authorization=CWB-EF46CCF9-7FB5-4120-AA40-CFDDA8BC249C"

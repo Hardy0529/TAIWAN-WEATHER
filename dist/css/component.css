@@ -4,6 +4,7 @@
 
 /**
  * Globel
+ * mouse
  * Elements
  * Header
  * Jumbotron
@@ -25,8 +26,8 @@
 ---------------------------*/
 #mouse {
   position: absolute;
-  top: 25px;
-  left: calc(100% - 150px);
+  top: 40px;
+  left: calc(100% - 125px);
   -webkit-transform: translate(-5%, -5%);
   -ms-transform: translate(-5%, -5%);
   transform: translate(-5%, -5%);
@@ -55,10 +56,28 @@
   font-weight: 900;
   font-size: 12px;
   line-height: 0.8rem;
-  -webkit-transform: rotate(-0.5deg);
-  -ms-transform: rotate(-0.5deg);
-  transform: rotate(-0.5deg);
+  left: 50%;
+  -webkit-transform: translateX(-50%) rotate(-0.5deg);
+  -ms-transform: translateX(-50%) rotate(-0.5deg);
+  transform: translateX(-50%) rotate(-0.5deg);
   white-space: nowrap;
+}
+
+/* Geolocation */
+.geolocation {
+  padding: 0px;
+  color: #225b8f;
+}
+.geolocation div {
+  padding-bottom: 4px;
+}
+.geolocation span.phoneIp {
+  display: none;
+}
+@media (min-width: 768px) {
+  .geolocation span.phoneIp {
+    display: block;
+  }
 }
 
 /*-------------------------*/
@@ -179,16 +198,6 @@
 }
 .navbar__social-bar .icon-btn {
   color: #225b8f;
-}
-
-/* Geolocation */
-.geolocation {
-  padding: 12px 15px;
-  color: #225b8f;
-}
-.geolocation span {
-  display: block;
-  padding-bottom: 4px;
 }
 
 /*-------------------------*/
