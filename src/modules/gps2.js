@@ -22,15 +22,16 @@ export function init() {
                                 </div>
                                 <div>
                                   <span class="phoneIp">
-                                    E:
+                                  E:
                                   </span>
-                                  ${my_lat}
+                                  ${my_lon}
                                 </div>
                                 <div>
                                   <span class="phoneIp">
                                   N:
                                   </span>
-                                  ${my_lon}
+                                  ${my_lat}
+                                 
                                 </div>`;
 
     fetch(
