@@ -477,10 +477,29 @@
 .weather__chart .weather__dayweather .weather__chart-temperature {
   font-family: "Noto Sans TC", "Helvetica", "roboto", arial, sans-serif;
   font-weight: 900;
-  font-size: 30px;
-  line-height: 43px;
+  font-size: 20px;
+  line-height: 28.6px;
   color: #225b8f;
   padding: 0px 24px 0px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (min-width: 576px) {
+  .weather__chart .weather__dayweather .weather__chart-temperature {
+    font-size: 24px;
+    line-height: 34.32px;
+  }
+}
+@media (min-width: 768px) {
+  .weather__chart .weather__dayweather .weather__chart-temperature {
+    font-size: 30px;
+    line-height: 43px;
+  }
+}
+
+.weather__chart .weather__dayweather .weather__chart-temperature div {
+  padding: 0 8px;
 }
 
 .weather__chart .weather__dayweather .weather__dayweather-icon svg {
