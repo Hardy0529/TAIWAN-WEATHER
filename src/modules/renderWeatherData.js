@@ -36,15 +36,18 @@ export function renderWeatherLocationLock(locationName) {
 }
 
 function renderWeather() {
+    let findIndex = 0;
     // 重新計算 startIndex 和 endIndex
     if(locationLockInfo.flag) {
         if(!refreshFlag) {
-            startIndex = hoursWeatherData.findIndex((element) => element.locationName == locationLockInfo.locationName);
-            if(startIndex == -1) {
+            findIndex = hoursWeatherData.findIndex((element) => element.locationName == locationLockInfo.locationName);
+            if(findIndex == -1) {
                 weatherNum = 0;
                 startIndex = unitWeatherOfPage * weatherNum;
                 endIndex = Math.min(hoursWeatherData.length, startIndex + unitWeatherOfPage);
+                locationLockInfo.flag = false;
             } else {
+                startIndex = findIndex;
                 endIndex = startIndex + 1;
             }
         }
@@ -59,7 +62,7 @@ function renderWeather() {
     }
     renderWeather36Hours();
     // 有鎖定縣市位置 or 畫面已顯示出全部資料，停止監控
-    if(locationLockInfo.flag || endIndex == hoursWeatherData.length) {
+    if((locationLockInfo.flag && findIndex != -1) || endIndex == hoursWeatherData.length) {
         observer.unobserve(weatherObserver);
     } 
     if(refreshFlag) {
@@ -180,7 +183,7 @@ async function loadData() {
     weekWeatherData = await getWeatherDataWeek();
     // 更新畫面時間
     const now = new Date();
-    timeRefresh.textContent = `更新時間：${now.getMonth() + 1}/${now.getDate()} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes()}:${now.getSeconds().toString().padStart(2, '0')}`;
+    timeRefresh.textContent = `更新時間：${now.getMonth() + 1}/${now.getDate().toString().padStart(2, '0')} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
 
     stopDataLoading();
 }
