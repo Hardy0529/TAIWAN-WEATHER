@@ -10,7 +10,10 @@ let weatherNum = 0;
 let startIndex = 0;
 let endIndex = 0;
 let refreshFlag = false;
-let locationLockFlag = false;
+const locationLockInfo = {
+    flag: false,
+    locationName: ""
+};
 const weatherContainer = document.querySelector(".weather__render");
 const weatherObserver = document.querySelector(".weather__render-observer");
 const timeRefresh = document.querySelector(".weather__UpdateTime > span");
@@ -26,16 +29,17 @@ const observer = new IntersectionObserver(observerCallback);
 
 
 export function renderWeatherLocationLock(locationName) {
-    locationLockFlag = true;
+    locationLockInfo.flag = true;
+    locationLockInfo.locationName = locationName;
     weatherContainer.innerHTML = "";
     observer.observe(weatherObserver);
 }
 
-function renderWeather(locationName=null) {
+function renderWeather() {
     // 重新計算 startIndex 和 endIndex
-    if(locationLockFlag) {
+    if(locationLockInfo.flag) {
         if(!refreshFlag) {
-            startIndex = hoursWeatherData.findIndex((element) => element.locationName == locationName);
+            startIndex = hoursWeatherData.findIndex((element) => element.locationName == locationLockInfo.locationName);
             if(startIndex == -1) {
                 endIndex = startIndex;
             } else {
@@ -51,9 +55,9 @@ function renderWeather(locationName=null) {
             endIndex = Math.min(hoursWeatherData.length, startIndex + unitWeatherOfPage);
         }
     }
-    renderWeather36Hours(locationName);
+    renderWeather36Hours();
     // 有鎖定縣市位置 or 畫面已顯示出全部資料，停止監控
-    if(locationLockFlag || endIndex == hoursWeatherData.length) {
+    if(locationLockInfo.flag || endIndex == hoursWeatherData.length) {
         observer.unobserve(weatherObserver);
     } 
     if(refreshFlag) {
@@ -63,7 +67,7 @@ function renderWeather(locationName=null) {
     }
 }
 
-function renderWeather36Hours(locationName=null) {
+function renderWeather36Hours() {
     for(let i = startIndex; i < endIndex; i++) {
         const weatherData=hoursWeatherData[i]
         const label = document.createElement("label");
