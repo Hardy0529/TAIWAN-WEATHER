@@ -36,5 +36,7 @@ function renderOptions() {
 }
 
 function removeOptions() {
-    dropDownMenuBar.removeChild(dropDownMenuBar.lastChild);
+    if(dropDownMenuBar.lastChild == dropDownMenuOptions){
+        dropDownMenuBar.removeChild(dropDownMenuBar.lastChild);
+    }
 }
