@@ -1,0 +1,94 @@
+.weather__loading {
+    width: 100%; height: 100%;
+    position: fixed; top: 0; left: 0;
+    background: rgba(0, 0, 0, 0.9);
+    background: #c5ebfa;
+    z-index: 100;
+}
+.weather__loading--close {
+    animation: close 0.4s linear 0.8s; ;
+}
+@keyframes close {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+.weather__loading--close > .weather__loading-bg,
+.weather__loading--close > .weather__loading-content {
+    opacity: 0;
+    transition: all 0.8s;
+}
+
+.weather__loading-bg {
+    position: absolute; top: 45%; left: 50%;
+    transform: translate(-50%, -50%) rotate(5deg);
+}
+.weather__loading-bg-circle {
+    position: absolute; top: 30%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 130px; height: 200px;
+    border-radius: 50%;
+    background: #f2f9fe;
+}
+.weather__loading-bg-circle::before {
+    content: "";
+    position: absolute; bottom: 0; left: -60px;
+    border-radius: 50%;
+    width: 100px; height: 140px;
+    background: #f2f9fe;;
+}
+.weather__loading-bg-circle::after {
+    content: "";
+    position: absolute; bottom: 0; right: -60px;
+    border-radius: 50%;
+    width: 100px; height: 130px;
+    background: #f2f9fe;;
+}
+.weather__loading-bg-rect {
+    width: 160px; height: 100px;
+    position: absolute; bottom: -100px; left: 50%;
+    transform: translate(-50%, 0);
+    background: #f2f9fe;;
+}
+
+.weather__loading-content {
+    position: absolute; top: 47%; left: 50%;
+    transform: translate(-50%, -50%);
+}
+.weather__loading-content {
+    text-align: center;
+}
+.weather__loading-content > p {
+    font-size: 20px;
+}
+
+.weather__loading-dot {
+    display: flex; justify-content: center;
+    gap: 10px;
+}
+.weather__loading-dot > div {
+    width: 5px; height: 5px;
+    background:rgb(84, 84, 84);
+    border-radius: 50%;
+}
+.weather__loading-dot > div:nth-child(1) {
+    animation: upDown 0.6s linear 0s infinite alternate;
+}
+.weather__loading-dot > div:nth-child(2) {
+    animation: upDown 0.6s linear 0.3s infinite alternate;
+}
+.weather__loading-dot > div:nth-child(3) {
+    animation: upDown 0.6s linear 0.6s infinite alternate;
+}
+
+@keyframes upDown {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-10px);
+    }
+}

@@ -26,7 +26,7 @@ async function fetchWeatherData(dataid, locationName=null) {
 
 // 鄉鎮天氣預報-未來1週天氣預報
 // 撈取資料設定
-const weekWeatherConfig = {
+const weatherConfigWeek = {
     PoP12h: true,              // 12小時降雨機率
     T: true,                   // 平均溫度
     RH: false,                 // 平均相對濕度
@@ -43,12 +43,12 @@ const weekWeatherConfig = {
     WD: false,                 // 風向
     Td: false                  // 平均露點溫度
 }
-const unitOfWeekData = 7;
-export async function getWeekWeatherData(locationName=null) {
+const unitOfDataWeek = 7;
+export async function getWeatherDataWeek(locationName=null) {
     const weatherData = await fetchWeatherData("F-D0047-091", locationName);
-    return classifyWeekWeatherData(weatherData);
+    return classifyWeatherDataWeek(weatherData);
 }
-function classifyWeekWeatherData(weatherData) {
+function classifyWeatherDataWeek(weatherData) {
     const returnData = [];
 
     const weatherLocationList = weatherData.records.locations[0].location;
@@ -64,7 +64,7 @@ function classifyWeekWeatherData(weatherData) {
             const weatherElementItem = weatherElementList[j];
 
             // skip 沒有要抓取的資料
-            if(!weekWeatherConfig[`${weatherElementItem.elementName}`]) { continue; }
+            if(!weatherConfigWeek[`${weatherElementItem.elementName}`]) { continue; }
 
             // 拆分未來一週資訊
             let timeList = weatherElementItem.time;
@@ -86,7 +86,7 @@ function classifyWeekWeatherData(weatherData) {
                     weekInfo.push(timeItem.elementValue[0].value.trim());
                     compareDate = startTime;
                     // 超過設定筆數，不再抓取
-                    if(weekInfo.length >= unitOfWeekData) { break; }
+                    if(weekInfo.length >= unitOfDataWeek) { break; }
                 }
             }
             solvedData[`${weatherElementItem.elementName}`] = weekInfo;
@@ -103,19 +103,19 @@ function classifyWeekWeatherData(weatherData) {
 
 // 一般天氣預報-今明 36 小時天氣預報
 // 撈取資料設定
-const thirtySixteenHoursWeatherConfig = {
+const weatherConfig36Hours = {
     Wx: true,    // 天氣現象
     PoP: true,   // 降雨機率
     MinT: true,  // 最低溫度
     CI: false,   // 舒適度指數
     MaxT: true,  // 最高溫度
 }
-export async function get36HoursWeatherData(locationName=null) {
+const unitOfData36Hours = 3;
+export async function getWeatherData36Hours(locationName=null) {
     const weatherData = await fetchWeatherData("F-C0032-001", locationName);
-    return classify36HoursWeatherData(weatherData);
+    return classifyWeatherData36Hours(weatherData);
 }
-const unitOf36HoursData = 3;
-function classify36HoursWeatherData(weatherData) {
+function classifyWeatherData36Hours(weatherData) {
     const returnData = [];
 
     const weatherLocationList = weatherData.records.location;
@@ -131,7 +131,7 @@ function classify36HoursWeatherData(weatherData) {
             const weatherElementItem = weatherElementList[j];
 
             // skip 沒有要抓取的資料
-            if(!thirtySixteenHoursWeatherConfig[`${weatherElementItem.elementName}`]) { continue; }
+            if(!weatherConfig36Hours[`${weatherElementItem.elementName}`]) { continue; }
 
             // 拆分未來一週資訊
             let timeList = weatherElementItem.time;
@@ -148,7 +148,7 @@ function classify36HoursWeatherData(weatherData) {
                 }
                 weekInfo.push(timeItem.parameter.parameterName.trim());
                 // 超過設定筆數，不再抓取
-                if(weekInfo.length >= unitOf36HoursData) { break; }
+                if(weekInfo.length >= unitOfData36Hours) { break; }
             }
             solvedData[`${weatherElementItem.elementName}`] = weekInfo;
             if(weekSecondInfo.length > 0) {
