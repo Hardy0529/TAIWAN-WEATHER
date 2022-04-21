@@ -1,4 +1,4 @@
-function init() {
+export function init() {
   // header color change
   window.addEventListener("scroll", () => {
     const scrollTop = document.documentElement.scrollTop;
