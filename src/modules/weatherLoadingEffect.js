@@ -22,5 +22,8 @@ export function startDataLoading(content) {
 
 export function stopDataLoading() {
     const container = document.querySelector(".weather__loading");
-    document.body.removeChild(container);
+    container.classList.add("weather__loading--close");
+    setTimeout(() => {
+        document.body.removeChild(container);
+    }, 1000);
 }

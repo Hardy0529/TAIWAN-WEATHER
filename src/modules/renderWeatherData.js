@@ -163,7 +163,7 @@ function renderWeatherWeek(locationName, container) {
 }
 
 async function init() {
-    startDataLoading("資料載入中");
+    startDataLoading("載入中");
     await loadData();
     // 資料載入，開始監測
     observer.observe(weatherObserver);
