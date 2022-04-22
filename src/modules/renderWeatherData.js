@@ -124,7 +124,7 @@ function renderWeather36Hours() {
       weatherChartTime.classList.add("weather__chart-time");
       const hours = new Date(weatherData.time[j].replace(/-/gi, "/")).getHours();
       weatherChartTime.textContent = 
-        hours >= 12 ? `${hours - 12} PM` : `${hours} AM`;
+        hours >= 12 ? `${hours == 12 ? hours : hours - 12} PM` : `${hours} AM`;
 
       const weatherDayWeatherIcon = document.createElement("div");
       weatherDayWeatherIcon.classList.add("weather__dayweather-icon");
@@ -170,7 +170,7 @@ function renderWeatherWeek(locationName, container) {
     (element) => element.locationName == locationName
   );
   const weatherData = weekWeatherData[index];
-  // console.log(locationName, weatherData);
+
   for (let i = 0; i < weatherData.time.length; i++) {
     const weatherWeekItem = document.createElement("div");
     weatherWeekItem.classList.add("weather__weekWeather-item");
@@ -223,14 +223,3 @@ iconRefresh.addEventListener("click", async (e) => {
   weatherContainer.innerHTML = "";
   observer.observe(weatherObserver);
 });
-
-
-function displayTest(content) {
-  // console.log("xxx", content[2]);
-  const div = document.createElement("div");
-  div.classList.add("xxxxxxxxx");
-  // div.style.zIndex=100;
-  div.textContent = `${content[2].locationName} ${content[2].Wx}`;
-  div.style.background = "white";
-  document.body.appendChild(div);
-}
