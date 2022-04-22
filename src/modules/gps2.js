@@ -1,10 +1,10 @@
 import { renderWeatherLocationLock } from "./renderWeatherData";
-import { stopDataLoading, setDataLoading } from "./weatherLoadingEffect";
+import { stopDataLoading } from "./weatherLoadingEffect";
 
 export function init() {
   //取得 經緯度
   if (navigator.geolocation) {
-    setDataLoading("正在存取位置");
+    //
     navigator.geolocation.getCurrentPosition(showPosition, error); //有拿到位置就呼叫 showPosition 函式
   } else {
     m.innerHTML =
@@ -12,7 +12,10 @@ export function init() {
   }
   function showPosition(position) {
     let my_lat = position.coords.latitude;
+    let show_lat = my_lat.toString().slice(0, 10);
     let my_lon = position.coords.longitude;
+    let show_lon = my_lon.toString().slice(0, 10);
+
     let min_result = 9999;
     let locationName = "台北";
 
@@ -21,18 +24,18 @@ export function init() {
                                 您的地理位置
                                 </div>
                                 <div>
-                                  <span class="phoneIp">
-                                  E:
-                                  </span>
-                                  ${my_lon}
-                                </div>
+                                <span class="phoneIp">
+                                緯度:
+                                </span>
+                                ${show_lat}
+                               </div>
                                 <div>
                                   <span class="phoneIp">
-                                  N:
+                                  經度:
                                   </span>
-                                  ${my_lat}
-                                 
-                                </div>`;
+                                  ${show_lon}
+                                </div>
+                               `;
 
     fetch(
       "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-091?Authorization=CWB-EF46CCF9-7FB5-4120-AA40-CFDDA8BC249C"
@@ -41,7 +44,6 @@ export function init() {
         return response.json();
       })
       .then((data) => {
-        setDataLoading("計算中");
         // console.log(data);
         let city = data["records"]["locations"][0]["location"];
         city.forEach((element) => {
@@ -66,7 +68,6 @@ export function init() {
   }
 
   function error() {
-    setDataLoading("無位置資訊");
     stopDataLoading();
   }
 }
