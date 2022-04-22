@@ -75,7 +75,7 @@ function classifyWeatherDataWeek(weatherData) {
             let compareDate = null;
             for(let k = 0; k < timeLen, timeItem = timeList[k]; k++) {
                 // 用 startTime 做區分，相同日期不再抓取
-                const startTime = new Date(timeItem.startTime);
+                const startTime = new Date(timeItem.startTime.replace(/-/gi, "/"));
                 if(!compareDate || compareDate.getDate() != startTime.getDate()) {
                     if(i == 0 && j == 0) {
                         timeInfo.push(timeItem.startTime);
