@@ -1,10 +1,10 @@
 import { renderWeatherLocationLock } from "./renderWeatherData";
-import { stopDataLoading } from "./weatherLoadingEffect";
+import { stopDataLoading, setDataLoading } from "./weatherLoadingEffect";
 
 export function init() {
   //取得 經緯度
   if (navigator.geolocation) {
-    //
+    setDataLoading("正在存取位置");
     navigator.geolocation.getCurrentPosition(showPosition, error); //有拿到位置就呼叫 showPosition 函式
   } else {
     m.innerHTML =
@@ -44,6 +44,7 @@ export function init() {
         return response.json();
       })
       .then((data) => {
+        setDataLoading("計算中");
         // console.log(data);
         let city = data["records"]["locations"][0]["location"];
         city.forEach((element) => {
@@ -68,6 +69,7 @@ export function init() {
   }
 
   function error() {
+    setDataLoading("無位置資訊");
     stopDataLoading();
   }
 }
